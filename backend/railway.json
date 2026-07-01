@@ -1,0 +1,11 @@
+{
+  "services": [
+    {
+      "name": "web",
+      "type": "python",
+      "env": {
+        "PORT": "8000"
+      }
+    }
+  ]
+}

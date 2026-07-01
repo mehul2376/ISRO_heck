@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment variables
+.env
+
+# IDE / OS
+.idea/
+.vscode/
+*.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Data (large files)
+*.nc
+*.h5
+*.hdf5
+*.csv.gz
+
+# Clone folder
+isro_heck_clone/
+
+# Video files (large)
+*.mp4
