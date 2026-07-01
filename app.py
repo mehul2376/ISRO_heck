@@ -406,20 +406,29 @@ with tab3:
         
         # Style the dataframe
         def highlight_hcho(val):
-            if isinstance(val, float):
-                if val >= 2.0:
-                    return 'background-color: #ffcccc'
-                elif val >= 1.8:
-                    return 'background-color: #ffe6cc'
-                elif val >= 1.6:
-                    return 'background-color: #ffffcc'
-            return ''
+            try:
+                if isinstance(val, (int, float)):
+                    if val >= 2.0:
+                        return 'background-color: #ffcccc'
+                    elif val >= 1.8:
+                        return 'background-color: #ffe6cc'
+                    elif val >= 1.6:
+                        return 'background-color: #ffffcc'
+                return ''
+            except Exception:
+                return ''
         
-        styled_df = hotspots_df.style.applymap(
-            highlight_hcho, subset=['HCHO (ppb)']
-        ).format({'HCHO (ppb)': '{:.2f}'})
+        style_cols = [c for c in ["HCHO (ppb)"] if c in hotspots_df.columns]
         
-        st.dataframe(styled_df, use_container_width=True, hide_index=True)
+        try:
+            if style_cols:
+                styled_df = hotspots_df.style.map(highlight_hcho, subset=style_cols).format({'HCHO (ppb)': '{:.2f}'})
+                st.dataframe(styled_df, use_container_width=True, hide_index=True)
+            else:
+                st.dataframe(hotspots_df, use_container_width=True, hide_index=True)
+        except Exception:
+            st.warning("Styled table could not be rendered. Showing normal table.")
+            st.dataframe(hotspots_df, use_container_width=True, hide_index=True)
         
         # Known Source Regions
         st.markdown("""
