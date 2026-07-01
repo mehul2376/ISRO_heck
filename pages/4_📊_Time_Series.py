@@ -95,7 +95,7 @@ if st.session_state.get('use_mock_data', True):
             fig2.update_layout(title="CNN-LSTM Training Curves", xaxis_title="Epoch", yaxis_title="Error")
             st.plotly_chart(fig2, use_container_width=True)
     else:
-        st.info("ℹ️ Live model training requires TensorFlow (not available in this deployment). Showing pre-computed results below.")
+        st.info("TensorFlow model architecture available locally; cloud demo uses cached predictions.")
 
     st.markdown("#### Baseline Model Comparison")
     comparison_data = pd.DataFrame({
